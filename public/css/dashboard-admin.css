@@ -1,0 +1,147 @@
+
+/* Navbar */
+.navbar {
+    background-color: #ff0000; /* Rojo intenso */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+/* Contenedor principal */
+.dash {
+    display: flex;
+    flex: 1;
+}
+
+/* Barra lateral */
+.sidebar {
+    background-color: #ff4d4d; /* Rojo medio */
+    width: 250px;
+    padding-top: 2rem;
+    min-height: 100vh;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #ff1a1a; /* Rojo más oscuro */
+}
+
+/* Contenido principal */
+.content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #ecf0f1;
+}
+
+.content section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #ff0000; /* Rojo intenso */
+    margin-bottom: 1rem;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    width: 80%;
+}
+
+form div label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #ff0000; /* Rojo intenso */
+}
+
+form div input, form div select {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 0.7rem;
+    background-color: #ff4d4d; /* Rojo medio */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #ff0000; /* Rojo intenso */
+}
+
+/* Tabla de usuarios */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+table th, table td {
+    border: 1px solid #bdc3c7;
+    padding: 1rem;
+    text-align: left;
+}
+
+table th {
+    background-color: #ff4d4d; /* Rojo medio */
+    color: white;
+}
+
+table td {
+    background-color: #f9f9f9;
+}
+
+/* Botones aceptar y rechazar */
+.accept-btn {
+    background-color: #4CAF50; /* Verde para aceptar */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.accept-btn:hover {
+    background-color: #45a049;
+}
+
+.reject-btn {
+    background-color: #ff0000; /* Rojo para rechazar */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reject-btn:hover {
+    background-color: #d32f2f;
+}

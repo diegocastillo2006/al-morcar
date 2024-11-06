@@ -1,0 +1,62 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos del encabezado */
+.header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.header .logo {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: #333;
+}
+
+.navigation {
+    float: right;
+}
+
+.navigation a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+.search {
+    margin-top: 10px;
+    flex-direction: row;
+}
+
+.search input[type="text"] {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search button {
+    padding: 8px 16px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search button:hover {
+    background-color: #555;
+}

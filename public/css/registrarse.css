@@ -1,0 +1,71 @@
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2.5em 0;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column; /* Cambio para organizar los elementos en columna */
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Aumentar el ancho del contenedor */
+    max-width: 600px; /* Tamaño máximo para pantallas grandes */
+    box-sizing: border-box; /* Asegurar que el padding y borde se incluyan en el tamaño total del elemento */
+    overflow: auto; /* Asegura que se pueda hacer scroll si el contenido es demasiado grande */
+}
+
+.login-form {
+    width: 100%; /* Asegurar que el formulario ocupe todo el ancho disponible */
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 0.25rem; /* Reducir el espaciado */
+    font-weight: bold;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.75rem; /* Reducir el espaciado */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegurar que el padding y borde se incluyan en el tamaño total del elemento */
+}
+
+.login-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #555;
+}
+
+.right-side {
+    margin-top: 1.5rem; /* Añadir margen superior para separar del formulario */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.school-logo {
+    max-width: 200px; /* Ajustar el tamaño máximo del escudo */
+    max-height: 200px; /* Ajustar el tamaño máximo del escudo */
+}

@@ -1,0 +1,95 @@
+/* Estilos del contenido principal */
+.main {
+    padding: 20px 0;
+}
+
+.categories {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.categories h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category-item {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.category-item a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.category-item a:hover {
+    text-decoration: underline;
+}
+
+.available-books, .special-offers {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.available-books h2, .special-offers h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.book-list, .offer-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.book-item, .offer-item {
+    text-align: center;
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.book-item img, .offer-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.book-item h3, .offer-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.book-item p, .offer-item p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.book-item button, .offer-item button {
+    padding: 8px 16px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.book-item button:hover, .offer-item button:hover {
+    background-color: #555;
+}
