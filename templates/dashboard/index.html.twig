@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Biblioteca
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block body %}
+
+	<main class="main">
+		<div
+			class="container">
+			{# <section class="categories">
+						                <h2>Categorías</h2>
+						                <div class="category-list">
+						                    <div class="category-item"><a href="#">Categoría 1</a></div>
+						                    <div class="category-item"><a href="#">Categoría 2</a></div>
+						                    <div class="category-item"><a href="#">Categoría 3</a></div>
+						                </div>
+						            </section> #}
+
+			<section class="available-books">
+				<h2>Añadidos recientemente</h2>
+				<div class="book-list row">
+					{% for libro in librosRecientes %}
+							<div class="card-deck m-1">
+								<div class="card m-1" style="width: 18rem;">
+									<div class="card-body">
+										<img src="ruta/de/tu/imagen.jpg" alt="Libro 1" class="card-subtitle mb-2 text-muted">
+
+										<h3 class="card-title">{{ libro.titulo | e}}</h3>
+										<p class="card-text">{{ libro.autor | e}}</p>
+
+									</div>
+                                                                            <div class="card-footer">
+										<a href="{{url('libro_ver', {'id': libro.id})}}">
+											<button class="btn btn-primary">Ver</button>
+										</a>
+                                        </div>
+								</div>
+                            </div>
+							{% endfor %}
+						</div>
+					</section>
+				</div>
+			</main>
+
+		{% endblock %}

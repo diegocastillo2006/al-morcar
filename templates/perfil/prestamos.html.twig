@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/prestamos.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Mis prestamos
+{% endblock %}
+
+{% block body %}
+
+	<div>
+		<h2 class="p-2">Préstamos</h2>
+		<div class="dash table-responsive">
+			<table class="table table-sm table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>Artículo</th>
+						<th>Fecha de préstamo</th>
+						<th>Fecha de devolución</th>
+						<th>Estado de préstamo</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for prestamo in prestamos %}
+						<tr>
+							<td>{{prestamo.getLibro().titulo}}</td>
+							<td>{{prestamo.getFechaPrestamo().format('d/m/Y')}}</td>
+							<td>{{prestamo.getFechaDevolucion().format('d/m/Y')}}</td>
+							<td>{{prestamo.estado}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

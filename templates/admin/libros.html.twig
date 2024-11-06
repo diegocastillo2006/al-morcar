@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/dashboard-admin.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Biblioteca{% endblock %}
+
+{% block body %}
+
+<div class="dash table-responsive">
+<table class="table table-sm table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Genero</th>
+                            <th>Editorial</th>
+                            <th>Numero de paginas</th>
+                            <th>ISBN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for libro in libros %}
+                            <tr>
+                            <form action="{{url('libro_editar', {'id': libro.id})}}" method="post">
+                                <td>
+                                <input type="text" value="{{ libro.titulo }}" name="titulo">
+                                </td>
+                                <td>
+                                <input type="text" value="{{ libro.autor }}" name="autor">
+                                </td>
+                                <td>
+                                <input type="text" value="{{ libro.genero }}" name="genero">
+                                </td>
+                                <td>
+                                <input type="text" value="{{ libro.editorial }}" name="editorial">
+                                </td>
+                                <td>
+                                <input type="text" value="{{ libro.numPag }}" name="num_pag">
+                                </td>
+                                <td>
+                                <input type="text" value="{{ libro.isbn }}" name="isbn">
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary">Editar</button>
+                                    </form>
+                                    <form action="{{url('libro_eliminar', {'id': libro.id})}}" method="post">
+                                        <button class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base-sin-navbar.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/registrarse.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block body %}
+<div class="content h-100 d-flex align-items-center justify-content-center mt-5">
+<div class="login-container card" style="width:80%; max-width: 20rem;">
+    <div class="login-form card-body">
+    <form method="post">
+        {% if error %}
+            <div >{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Inicia sesión</h1>
+        <div class="form-group">
+        <label for="username">Email</label>
+        <input type="email" class="form-control" value="{{ last_username }}" name="_username" id="username" autocomplete="email" required autofocus>
+        </div>
+        <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" class="form-control" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+        </div>
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            Iniciar sesión
+        </button>
+    </form>
+    </div>
+    </div>
+    </div>
+{% endblock %}

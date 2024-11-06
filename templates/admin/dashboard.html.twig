@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/dashboard-admin.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Biblioteca
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="col-md-2 d-none d-md-block bg-light sidebar sidebar-sticky">
+				<a href="#" class="nav-link">Panel Principal</a>
+				<div class="sidebar-sticky">
+					<ul class="nav flex-column sidebar-sticky">
+						<li class="nav-item">
+							<a class="nav-link" href="{{url('app_admin_libros')}}">Gestión de Libros</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#users">Usuarios</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#reports">Reportes</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+
+			<!-- Contenido Principal -->
+			<main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+				<section id="dashboard" class="p-5">
+					<h2>Panel Principal</h2>
+					<p>Bienvenido al panel de administración de la librería. Aquí puedes gestionar los libros, usuarios y reportes.</p>
+				</section>
+
+				<section id="books" class="p-5">
+					<h2>Gestión de Libros</h2>
+					<p>Aquí puedes añadir, editar o eliminar libros.</p>
+					{{ form_errors(libroForm) }}
+					{{ form_start(libroForm) }}
+					{{ form_row(libroForm.titulo) }}
+					{{ form_row(libroForm.autor) }}
+					{{ form_row(libroForm.anio, {
+            'label': 'Año de publicación'
+            }) }}
+					{{ form_row(libroForm.genero) }}
+					{{ form_row(libroForm.editorial) }}
+					{{ form_row(libroForm.num_pag, {
+            'label': 'Número de paginas',
+            }) }}
+					{{ form_row(libroForm.isbn, {
+            'label': 'ISBN'
+            }) }}
+					{{ form_row(libroForm.disponible) }}
+					<button type="submit" class="btn btn-primary">Añadir libro</button>
+					{{ form_end(libroForm) }}
+				</form>
+			</section>
+
+			<section id="users" class="p-5">
+				<h2 >Usuarios</h2>
+				<p>Administra los usuarios que tienen acceso a la plataforma.</p>
+
+				<!-- Tabla de usuarios con aceptar/rechazar -->
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Email</th>
+							<th>Rol</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for usuario in cuentasNoActivadas %}
+							<tr>
+								<td>{{ usuario.getUserIdentifier()|e }}</td>
+								{% if usuario.getRoles()[0] == 'ROLE_USER' %}
+									<td>Usuario</td>
+								{% else %}
+									<td>Administrador</td>
+								{% endif %}
+								<td>
+									<form action="{{url('app_admin_aprobar', {'id': usuario.id})}}" method="post">
+										<button class="btn btn-primary">Aceptar</button>
+									</form>
+									<form action="{{url('app_admin_rechazar', {'id': usuario.id})}}" method="post">
+										<button class="btn btn-danger">Rechazar</button>
+									</form>
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</section>
+
+			<section id="reports" class="p-5">
+				<h2 class="display-4">Reportes</h2>
+
+				<h3 class="mt-3">Préstamos en proceso</h3>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Libro</th>
+							<th>Usuario</th>
+							<th>Fecha de prestamo</th>
+							<th>Fecha de devolucion</th>
+							<th>Estado</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for prestamo in prestamos_proceso %}
+							<tr>
+								<td>{{ prestamo.libro.titulo }}</td>
+								<td>{{ prestamo.usuario.email }}</td>
+								<td>{{ prestamo.getFechaPrestamo().format('d/m/Y') }}</td>
+								<td>{{ prestamo.getFechaDevolucion().format('d/m/Y') }}</td>
+								<td>{{ prestamo.estado }}</td>
+								<td>
+									<form action="{{url('app_prestamo_aprobar', {'id': prestamo.id})}}" method="post">
+										<button class="btn btn-primary">Aprobar</button>
+									</form>
+									<form action="{{url('app_prestamo_rechazar', {'id': prestamo.id})}}" method="post">
+										<button class="btn btn-danger">Rechazar</button>
+									</form>
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			
+
+			<h3 class="mt-5">Préstamos activos</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Libro</th>
+						<th>Usuario</th>
+						<th>Fecha de prestamo</th>
+						<th>Fecha de devolucion</th>
+						<th>Estado</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for prestamo in prestamos_activos %}
+						<tr>
+							<td>{{ prestamo.libro.titulo }}</td>
+							<td>{{ prestamo.usuario.email }}</td>
+							<td>{{ prestamo.getFechaPrestamo().format('d/m/Y') }}</td>
+							<td>{{ prestamo.getFechaDevolucion().format('d/m/Y') }}</td>
+							<td>{{ prestamo.estado }}</td>
+							<td>
+								<form action="{{url('app_prestamo_rechazar', {'id': prestamo.id})}}" method="post">
+									<button class="btn btn-primary">Marcar como devuelto</button>
+								</form>
+							</td>
+						</tr>
+					</td>
+				</tbody>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<h3 class="mt-5">Préstamos atrasados</h3><table class="table">
+<thead>
+	<tr>
+		<th>Libro</th>
+		<th>Usuario</th>
+		<th>Fecha de prestamo</th>
+		<th>Fecha de devolucion</th>
+		<th>Estado</th>
+		<th>Acciones</th>
+	</tr>
+</thead>
+<tbody>
+	{% for prestamo in prestamos_atrasados %}
+		<tr>
+			<td>{{ prestamo.libro.titulo }}</td>
+			<td>{{ prestamo.usuario.email }}</td>
+			<td>{{ prestamo.getFechaPrestamo().format('d/m/Y') }}</td>
+			<td>{{ prestamo.getFechaDevolucion().format('d/m/Y') }}</td>
+			<td>{{ prestamo.estado }}</td>
+			<td>
+				<form action="{{url('app_prestamo_rechazar', {'id': prestamo.id})}}" method="post">
+					<button class="btn btn-primary">Marcar como devuelto</button>
+				</form>
+			</td>
+		</tr>
+	{% endfor %}
+</tbody></table></section></section></section></main></div></div></div>{% endblock %}

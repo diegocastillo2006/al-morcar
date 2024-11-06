@@ -1,0 +1,18 @@
+{% extends 'base-sin-navbar.html.twig' %}
+
+{% block title %}Registrarse
+{% endblock %}
+
+{% block body %}
+	<div class="content h-100 d-flex align-items-center justify-content-center mt-5">
+		<div class="card">
+			<div class="card-header">
+				<h1 class="card-title">Registrarse</h1>
+			</div>
+			<div class="card-body">
+				<a href="{{ url('app_registro_alumno') }}" class="btn btn-primary btn-lg btn-block">Alumnos</a>
+				<a href="{{ url('app_registro_profesor') }}" class="btn btn-secondary btn-lg btn-block">Profesores</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

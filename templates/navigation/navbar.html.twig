@@ -1,0 +1,24 @@
+<header class="header">
+	<div class="container">
+		<h1 class="logo">
+			<a href="{{url('app_dashboard')}}">Biblioteca del Otto Krause</a>
+		</h1>
+		<nav class="navigation navbar-light bg-light nav nav-pills">
+			<a href="{{url('app_dashboard')}}" class="nav-item">Inicio</a>
+			{% if is_granted("IS_AUTHENTICATED") %}
+				<a href="#" class="nav-item">{{ app.user.getUserIdentifier() }}</a>
+				<a href="{{url('app_perfil_prestamos')}}" class="nav-item">Mis préstamos</a>
+				<a href="{{url('app_logout')}}" class="nav-item">Cerrar sesión</a>
+			{% else %}
+				<a href="{{url('app_login')}}" class="nav-item">Iniciar sesión</a>
+				<a href="{{url('app_registro')}}" class="nav-item">Registrarse</a>
+			{% endif %}
+		</nav>
+		<div>
+			<form action="{{ url("app_search") }}" class="search">
+				<input type="text" name="q" placeholder="Buscar...">
+				<button type="submit">Buscar</button>
+			</form>
+		</div>
+	</div>
+</header>

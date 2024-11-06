@@ -1,0 +1,44 @@
+{% extends 'base-sin-navbar.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/registrarse.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Registrar alumno
+{% endblock %}
+
+{% block body %}
+	<div class="content h-100 d-flex align-items-center justify-content-center mt-5">
+		<div class="card" style="width:80%; max-width: 25rem;">
+			<div class="card-header">
+				{{ form_errors(registrationForm) }}
+
+				{{ form_start(registrationForm) }}
+				<h2>Registrar alumno</h2>
+				{{ form_row(registrationForm.nombre) }}
+				{{ form_row(registrationForm.apellido) }}
+				{{ form_row(registrationForm.dni) }}
+				{{ form_row(registrationForm.celular) }}
+				{{ form_row(registrationForm.anio_curso, {
+            'label': 'Año y curso',
+            'attr': {'placeholder': 'Ej: 4COM1' }
+            }) }}
+				{{ form_row(registrationForm.domicilio) }}
+				{{ form_row(registrationForm.localidad) }}
+				<h2>Datos de usuario</h2>
+				{{ form_row(registrationForm.usuario.email) }}
+				{{ form_row(registrationForm.usuario.plainPassword, { 
+            'label': 'Crea una contraseña',
+            'attr': {'placeholder': 'Al menos 8 carácteres' }
+            }) }}
+				{{ form_row(registrationForm.usuario.captcha, {
+            'label': 'Llena este captcha para asegurarnos de que no eres un robot:'
+        }) }}
+
+				<button type="submit" class="btn btn-primary">Registrarse</button>
+				{{ form_end(registrationForm) }}
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{libro.titulo}}
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/libro.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+
+	<!-- Sección para el desplazamiento de "Mis Libros" -->
+	<section id="mis-libros" class="mis-libros-section h-100 d-flex align-items-center justify-content-center mt-5">
+		<div class="book-details-container card" style="width: 20rem; ">
+			<h1 class="card-title p-2 text-center">
+				{{libro.titulo}}</h1>
+		<div class="book-info card-body">
+			<p>
+				<strong>Identificador:</strong>
+				{{libro.id}}</p>
+			<p class="card-text">
+				<strong>Autor:</strong>
+				{{libro.autor}}</p>
+			<p class="card-text">
+				<strong>Año:</strong>
+				{{libro.anio}}</p>
+			<p class="card-text">
+				<strong>Género:</strong>
+				{{libro.genero}}</p>
+			<p class="card-text">
+				<strong>Editorial:</strong>
+				{{libro.editorial}}</p>
+			<p class="card-text">
+				<strong>Cantidad de páginas:</strong>
+				{{libro.getNumPag()}}</p>
+			<p class="card-text">
+				<strong>ISBN:</strong>
+				{{libro.isbn}}</p>
+			{% if prestamo_activo %}
+				<button class="btn-danger btn">Ya solicitaste este libro</button>
+			{% else %}
+				<a href="{{libro.isDisponible() ? url('app_prestamo', {'id': libro.id}): '#'}}">
+					<button class="btn {{ libro.isDisponible() ? 'btn-primary ' : 'btn-danger' }} btn">
+						{{ libro.isDisponible() ? 'Solicitar libro' : 'Libro no disponible' }}
+					</button>
+				</a>
+			{% endif %}
+		</div>
+	</div>
+</section>{% endblock %}

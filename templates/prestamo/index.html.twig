@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/prestamo.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}Nuevo prestamo
+{% endblock %}
+
+{% block body %}
+
+	<div class="content">
+		<div class="dash">
+			<div class="content h-100 d-flex align-items-center justify-content-center mt-5">
+				<div class="login-container card" style="width:80%; max-width: 30rem;">
+					<div class="login-form card-body">
+						<h1>Solicitud de Libro:
+							{{libro.titulo}}</h1>
+						<h2>Selecciona las fechas del préstamo</h2>
+
+						{{ form_errors(form) }}
+
+						{{ form_start(form) }}
+
+						{{ form_row(form.fecha_prestamo, { 'id': 'start-date' }) }}
+
+						{{ form_row(form.fecha_devolucion, { 'id': 'end-date' }) }}
+
+						<div id="error-message" class="error"></div>
+
+						<button id="submit-btn" class="btn btn-primary" disabled>Confirmar</button>
+
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const startDateInput = document.getElementById('start-date');
+const endDateInput = document.getElementById('end-date');
+const errorMessage = document.getElementById('error-message');
+const submitButton = document.getElementById('submit-btn');
+
+function validateDates() {
+const startDate = new Date(startDateInput.value);
+const endDate = new Date(endDateInput.value);
+
+// Reset error message and disable button
+errorMessage.textContent = '';
+submitButton.disabled = true;
+
+// Check if both dates are selected
+if (! startDate || ! endDate) {
+return;
+}
+
+// Calculate the difference in days
+const timeDiff = endDate - startDate;
+const diffInDays = timeDiff / (1000 * 3600 * 24);
+
+if (diffInDays < 0) {
+errorMessage.textContent = 'La fecha de fin no puede ser anterior a la fecha de inicio.';
+} else if (diffInDays > 14) {
+errorMessage.textContent = 'El periodo no puede superar las dos semanas.';
+} else {
+submitButton.disabled = false;
+}
+}
+
+startDateInput.addEventListener('change', validateDates);
+endDateInput.addEventListener('change', validateDates);
+		</script>
+	{% endblock %}
